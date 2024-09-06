@@ -1,0 +1,36 @@
+@import "../utils/mixins.module";
+@import "../utils/colors.module";
+@import "../utils/variables.module";
+
+.header {
+  background-color: $blue;
+  color: $white;
+  padding: 20px;
+  width: 100%;
+  @include flexbox($justify: space-between, $align: center, $gap: 10px);
+
+  .logo {
+    cursor: pointer;
+    line-height: 0;
+
+    .logoImg {
+      max-height: 50px;
+    }
+  }
+
+  .logoutBtn {
+    background-color: $lightBlue;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid $borderColor;
+    color: $white;
+    font-size: 16px;
+    letter-spacing: 0.1px;
+    transition: $transition;
+  }
+
+  .logoutBtn:hover {
+    cursor: pointer;
+    border-color: $white;
+  }
+}

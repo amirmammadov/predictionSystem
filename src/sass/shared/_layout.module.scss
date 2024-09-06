@@ -1,0 +1,8 @@
+@import "../utils/mixins.module";
+@import "../utils/colors.module";
+@import "../utils/variables.module";
+
+.mainLayout {
+  background-color: $black;
+  padding: 40px;
+}

@@ -1,15 +1,17 @@
+import s from "../sass/shared/_layout.module.scss";
+
 import { Outlet } from "react-router-dom";
+
+import Header from "../components/Header";
 
 function Layout() {
   return (
-    <div>
-      <header>
-        <div>header</div>
-      </header>
-      <main>
+    <>
+      <Header />
+      <main className={s.mainLayout}>
         <Outlet />
       </main>
-    </div>
+    </>
   );
 }
 
