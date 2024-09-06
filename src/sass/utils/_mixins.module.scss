@@ -1,0 +1,56 @@
+@import "./variables";
+
+@mixin flexbox(
+  $direction: row,
+  $justify: flex-start,
+  $align: flex-start,
+  $gap: 0
+) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  gap: $gap;
+}
+
+@mixin x-large-screen() {
+  @media (max-width: $x-large-screen) {
+    @content;
+  }
+}
+
+@mixin large-screen() {
+  @media (max-width: $large-screen) {
+    @content;
+  }
+}
+
+@mixin desktop() {
+  @media (max-width: $desktop) {
+    @content;
+  }
+}
+
+@mixin tablet() {
+  @media (max-width: $tablet) {
+    @content;
+  }
+}
+
+@mixin mobile() {
+  @media (max-width: $mobile) {
+    @content;
+  }
+}
+
+@mixin small-screen() {
+  @media (max-width: $small-screen) {
+    @content;
+  }
+}
+
+@mixin x-small-screen() {
+  @media (max-width: $x-small-screen) {
+    @content;
+  }
+}
