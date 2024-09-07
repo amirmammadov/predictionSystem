@@ -18,14 +18,14 @@
     @include flexbox($justify: flex-start, $align: center, $gap: 10px);
     border-radius: $border-radius;
     flex-wrap: wrap;
+    border: 1px solid $borderColor;
   }
 
   .axis {
     width: 100%;
     @include flexbox($justify: space-around, $align: flex-start, $gap: 20px);
 
-    .axisX,
-    .axisY {
+    .axisItem {
       @include flexbox(
         $direction: column,
         $justify: flex-start,
@@ -43,14 +43,15 @@
         font-size: 35px;
       }
 
-      .axisXBlanks,
-      .axisYBlanks {
+      .axisBlanks {
         background-color: $white-second;
         border-radius: $border-radius;
         border: 1px solid $borderColor;
         padding: 20px;
         @include flexbox($justify: flex-start, $align: center, $gap: 10px);
         flex-wrap: wrap;
+        min-width: 120px;
+        min-height: 60px;
       }
     }
   }

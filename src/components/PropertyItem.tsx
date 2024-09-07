@@ -1,11 +1,18 @@
 import s from "../sass/components/_propertyItem.module.scss";
 
-interface IPropertyItem {
-  value: string;
-}
+import { IPropertyItem } from "../types";
 
-const PropertyItem = ({ value }: IPropertyItem) => {
-  return <div className={s.propertyItem}>{value}</div>;
+const PropertyItem = ({ value, index, setActiveCard }: IPropertyItem) => {
+  return (
+    <div
+      className={s.propertyItem}
+      draggable
+      onDragStart={() => setActiveCard(index)}
+      onDragEnd={() => setActiveCard(null)}
+    >
+      {value}
+    </div>
+  );
 };
 
 export default PropertyItem;

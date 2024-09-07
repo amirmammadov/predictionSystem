@@ -2,15 +2,17 @@
 @import "../utils/colors.module";
 @import "../utils/variables.module";
 
-.propertyItem {
-  background-color: $white;
-  color: $black;
+.dropArea {
+  background-color: transparent;
+  color: $white;
   padding: 15px;
   border-radius: $border-radius;
-  cursor: grab;
   text-align: center;
+  border: 1px dashed $borderColor;
+  transition: $transition;
+  opacity: 1;
 }
 
-.propertyItem:active {
-  opacity: 0.5;
+.hideDrop {
+  opacity: 0;
 }
