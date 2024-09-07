@@ -1,0 +1,93 @@
+@import "../utils/mixins.module";
+@import "../utils/colors.module";
+@import "../utils/variables.module";
+
+.calc {
+  width: 100%;
+  @include flexbox(
+    $direction: column,
+    $justify: flex-start,
+    $align: flex-start,
+    $gap: 50px
+  );
+
+  .properties {
+    width: 100%;
+    background-color: $white-second;
+    padding: 20px;
+    @include flexbox($justify: flex-start, $align: center, $gap: 10px);
+    border-radius: $border-radius;
+    flex-wrap: wrap;
+  }
+
+  .axis {
+    width: 100%;
+    @include flexbox($justify: space-around, $align: flex-start, $gap: 20px);
+
+    .axisX,
+    .axisY {
+      @include flexbox(
+        $direction: column,
+        $justify: flex-start,
+        $align: center,
+        $gap: 20px
+      );
+      width: 100%;
+      flex-grow: 1;
+      max-width: 100%;
+
+      .axisTitle {
+        background-color: $white-second;
+        border-radius: $border-radius;
+        padding: 20px 30px;
+        font-size: 35px;
+      }
+
+      .axisXBlanks,
+      .axisYBlanks {
+        background-color: $white-second;
+        border-radius: $border-radius;
+        border: 1px solid $borderColor;
+        padding: 20px;
+        @include flexbox($justify: flex-start, $align: center, $gap: 10px);
+        flex-wrap: wrap;
+      }
+    }
+  }
+
+  .inputs {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+
+    .options,
+    .input {
+      padding: 12px 15px;
+      border-radius: $border-radius;
+      font-size: 16px;
+      outline: none;
+      border: 1px solid $borderColor;
+      min-width: 200px;
+    }
+
+    .calcBtn {
+      padding: 20px;
+      background-color: $purple;
+      border-radius: $border-radius;
+      font-size: 16px;
+      letter-spacing: 0.01px;
+      color: $white;
+      min-width: 200px;
+      border: 1px solid $borderColor;
+      transition: $transition;
+    }
+
+    .calcBtn:hover {
+      cursor: pointer;
+      border-color: $white;
+    }
+  }
+}

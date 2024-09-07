@@ -11,7 +11,7 @@
     $direction: column,
     $justify: flex-start,
     $align: flex-start,
-    $gap: 30px
+    $gap: 50px
   );
 
   .title {
@@ -19,7 +19,6 @@
     text-align: center;
     font-size: 25px;
     letter-spacing: 0.01px;
-    margin-bottom: 20px;
   }
 
   .buttons {
@@ -43,8 +42,13 @@
     }
 
     button.active {
-      background-color: rgba(255, 255, 255, 0.1);
+      background-color: $white-second;
       border-color: $purple;
     }
+  }
+
+  .content {
+    width: 100%;
+    height: auto;
   }
 }
