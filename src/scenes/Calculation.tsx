@@ -30,9 +30,22 @@ const Calculation = () => {
 
   useEffect(() => {
     if (yElementRef.current) {
-      const hasChildren = yElementRef.current.hasChildNodes();
-      if (!hasChildren) {
+      const yProperties = yElementRef.current.querySelectorAll(
+        '[data-id="property-item"]'
+      );
+      const hasYProperties = yProperties.length > 0;
+      if (!hasYProperties) {
         setyHas(false);
+      }
+    }
+
+    if (xElementRef.current) {
+      const xProperties = xElementRef.current.querySelectorAll(
+        '[data-id="property-item"]'
+      );
+      const hasXProperties = xProperties.length > 0;
+      if (!hasXProperties) {
+        setxHas(false);
       }
     }
   }, [propertyData]);
@@ -75,6 +88,8 @@ const Calculation = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    console.log({ xHas, yHas });
 
     if (!xHas || !yHas) {
       toastError("Fill X and Y!");
@@ -122,6 +137,7 @@ const Calculation = () => {
                 property.status === statuses[1] && (
                   <PropertyItem
                     key={property.id}
+                    dataID="property-item"
                     value={property.value}
                     index={property.id}
                     setActiveCard={setActiveCard}
@@ -139,6 +155,7 @@ const Calculation = () => {
                 property.status === statuses[2] && (
                   <PropertyItem
                     key={property.id}
+                    dataID="property-item"
                     value={property.value}
                     index={property.id}
                     setActiveCard={setActiveCard}

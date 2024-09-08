@@ -7,6 +7,7 @@ export interface ContextProps {
 export interface IPropertyItem {
   value: string;
   index: number;
+  dataID?: string;
   setActiveCard: (val: number | null) => void;
 }
 
