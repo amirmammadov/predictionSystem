@@ -10,6 +10,6 @@ import "./sass/style.module.scss";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <App />
-    <ToastContainer />
+    <ToastContainer newestOnTop />
   </StrictMode>
 );

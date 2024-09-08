@@ -9,3 +9,15 @@ export interface IPropertyItem {
   index: number;
   setActiveCard: (val: number | null) => void;
 }
+
+export interface FormValues {
+  optionOne: string;
+  optionTwo: string;
+  processName: string;
+}
+
+export interface IProperty {
+  id: number;
+  value: string;
+  status: string;
+}

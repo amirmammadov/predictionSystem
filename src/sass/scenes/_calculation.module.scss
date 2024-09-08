@@ -11,8 +11,12 @@
     $gap: 50px
   );
 
-  .properties {
-    width: 100%;
+  .propertyTitle {
+    background-color: $white-second;
+    border-radius: $border-radius;
+  }
+
+  .propertyContent {
     background-color: $white-second;
     padding: 20px;
     @include flexbox($justify: flex-start, $align: center, $gap: 10px);
@@ -21,11 +25,25 @@
     border: 1px solid $borderColor;
   }
 
+  > :first-child {
+    width: 100%;
+    @include flexbox(
+      $direction: column,
+      $justify: flex-start,
+      $align: flex-start,
+      $gap: 10px
+    );
+
+    .propertyContent {
+      width: 100%;
+    }
+  }
+
   .axis {
     width: 100%;
     @include flexbox($justify: space-around, $align: flex-start, $gap: 20px);
 
-    .axisItem {
+    .propertyArea {
       @include flexbox(
         $direction: column,
         $justify: flex-start,
@@ -36,27 +54,26 @@
       flex-grow: 1;
       max-width: 100%;
 
-      .axisTitle {
-        background-color: $white-second;
-        border-radius: $border-radius;
+      .propertyTitle {
         padding: 20px 30px;
         font-size: 35px;
       }
 
-      .axisBlanks {
-        background-color: $white-second;
-        border-radius: $border-radius;
-        border: 1px solid $borderColor;
-        padding: 20px;
-        @include flexbox($justify: flex-start, $align: center, $gap: 10px);
-        flex-wrap: wrap;
+      .propertyContent {
         min-width: 120px;
         min-height: 60px;
       }
     }
   }
 
-  .inputs {
+  .propertyTitle {
+    background-color: $white-second;
+    border-radius: $border-radius;
+    padding: 5px 10px;
+    font-size: 16px;
+  }
+
+  .form {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
