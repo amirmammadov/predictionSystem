@@ -25,3 +25,21 @@ export const properties = [
     status: "all",
   },
 ];
+
+export const allProcesses = [
+  {
+    id: 1,
+    title: "Process One",
+    xValues: ["Color", "Engine", "Gear Box"],
+  },
+  {
+    id: 2,
+    title: "Process Two",
+    xValues: ["Color", "Engine"],
+  },
+  {
+    id: 3,
+    title: "Process Three",
+    xValues: ["Color", "Engine", "Gear Box", "Transmittion"],
+  },
+];
