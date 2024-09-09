@@ -1,0 +1,141 @@
+@import "../utils/mixins.module";
+@import "../utils/colors.module";
+@import "../utils/variables.module";
+
+.signPage {
+  min-height: 560px;
+  @include flexbox($justify: center, $align: center);
+
+  .signSwapper {
+    padding: 20px;
+    background-color: $white;
+    border-radius: $border-radius;
+    width: fit-content;
+    @include flexbox(
+      $direction: column,
+      $justify: flex-start,
+      $align: flex-start,
+      $gap: 30px
+    );
+    min-width: 450px;
+
+    @include mobile {
+      min-width: initial;
+      width: 100%;
+    }
+
+    .signTitle {
+      color: $black;
+      font-size: 30px;
+
+      @include mobile {
+        font-size: 25px;
+      }
+    }
+
+    .signForm {
+      @include flexbox(
+        $direction: column,
+        $justify: flex-start,
+        $align: flex-start,
+        $gap: 20px
+      );
+      width: 100%;
+
+      @include mobile {
+        gap: 15px;
+      }
+
+      .signFormName {
+        @include flexbox($justify: space-between, $align: center, $gap: 10px);
+
+        @include mobile {
+          gap: 5px;
+        }
+      }
+
+      .signFormItem,
+      .signFormNameItem {
+        @include flexbox(
+          $direction: column,
+          $justify: flex-start,
+          $align: flex-start,
+          $gap: 10px
+        );
+        width: 100%;
+
+        label {
+          font-size: 15px;
+          color: $black;
+          letter-spacing: 0.01px;
+
+          @include mobile {
+            font-size: 14px;
+          }
+        }
+
+        input {
+          border: 1px solid $borderColor;
+          outline: none;
+          padding: 12px 15px;
+          font-size: 16px;
+          border-radius: $border-radius;
+          width: 100%;
+
+          @include mobile {
+            font-size: 15px;
+          }
+        }
+
+        .resetPassword {
+          margin-left: auto;
+          text-decoration: none;
+          color: $black;
+
+          @include mobile {
+            font-size: 15px;
+          }
+        }
+
+        .resetPassword:hover {
+          text-decoration: underline;
+        }
+      }
+
+      .submitBtn {
+        width: 100%;
+        padding: 25px 20px;
+        background-color: $black;
+        color: $white;
+        border-radius: $border-radius;
+        font-size: 16px;
+
+        @include mobile {
+          padding: 20px;
+        }
+      }
+
+      .submitBtn:hover {
+        cursor: pointer;
+        opacity: 0.9;
+      }
+    }
+
+    .signSwitch {
+      width: 100%;
+      text-align: center;
+      color: $black;
+      font-size: 16px;
+
+      @include mobile {
+        font-size: 15px;
+      }
+
+      .signSwitchLink {
+        text-decoration: underline;
+        color: $black;
+        font-weight: bold;
+      }
+    }
+  }
+}

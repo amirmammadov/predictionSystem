@@ -9,7 +9,7 @@ export const AuthContext = createContext<ContextProps>({
 });
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [token, setToken] = useState<string | null>("ddd");
+  const [token, setToken] = useState<string | null>(null);
 
   const login = (userToken: string) => {
     setToken(userToken);
