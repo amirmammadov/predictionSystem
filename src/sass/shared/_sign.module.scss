@@ -87,6 +87,10 @@
           }
         }
 
+        input.nameInputError {
+          border-color: $red;
+        }
+
         .resetPassword {
           margin-left: auto;
           text-decoration: none;
@@ -118,6 +122,11 @@
       .submitBtn:hover {
         cursor: pointer;
         opacity: 0.9;
+      }
+
+      .formInputError {
+        color: $red;
+        font-size: 15px;
       }
     }
 
