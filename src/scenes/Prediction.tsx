@@ -36,7 +36,7 @@ const Prediction = () => {
     <div className={s.prediction}>
       <div className={s.processes}>
         <label htmlFor="process" className={s.processLabel}>
-          Choose your desired process:
+          Choose process:
         </label>
         <select
           id="process"
