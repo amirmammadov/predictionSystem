@@ -69,6 +69,7 @@ const Calculation = () => {
     }
 
     setPropertData(updatedProperties);
+    setActiveCard(null);
   };
 
   const handleChange = ({

@@ -5,4 +5,8 @@
 .mainLayout {
   background-color: $black;
   padding: 40px;
+
+  @include x-small-screen {
+    padding: 10px;
+  }
 }

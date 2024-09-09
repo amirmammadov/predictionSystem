@@ -11,6 +11,10 @@
     $gap: 50px
   );
 
+  @include tablet {
+    gap: 30px;
+  }
+
   .propertyTitle {
     background-color: $white-second;
     border-radius: $border-radius;
@@ -57,11 +61,26 @@
       .propertyTitle {
         padding: 20px 30px;
         font-size: 35px;
+
+        @include mobile {
+          padding: 10px 15px;
+          font-size: 30px;
+        }
       }
 
       .propertyContent {
         min-width: 120px;
         min-height: 60px;
+
+        @include mobile {
+          min-width: 100px;
+          min-height: 40px;
+        }
+
+        @include x-small-screen {
+          min-width: 50px;
+          min-height: 20px;
+        }
       }
     }
   }
@@ -81,6 +100,18 @@
     justify-content: space-between;
     align-items: center;
 
+    @include tablet {
+      gap: 10px;
+    }
+
+    @include mobile {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include x-small-screen {
+      grid-template-columns: repeat(1, 1fr);
+    }
+
     .options,
     .input {
       padding: 12px 15px;
@@ -89,6 +120,15 @@
       outline: none;
       border: 1px solid $borderColor;
       min-width: 200px;
+
+      @include desktop {
+        min-width: 100px;
+      }
+
+      @include x-small-screen {
+        font-size: 14px;
+        padding: 10px 12px;
+      }
     }
 
     .calcBtn {
@@ -101,6 +141,15 @@
       min-width: 200px;
       border: 1px solid $borderColor;
       transition: $transition;
+
+      @include desktop {
+        min-width: 100px;
+      }
+
+      @include x-small-screen {
+        font-size: 14px;
+        padding: 18px;
+      }
     }
 
     .calcBtn:hover {

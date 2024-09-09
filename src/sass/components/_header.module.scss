@@ -15,6 +15,10 @@
 
     .logoImg {
       max-height: 50px;
+
+      @include mobile {
+        width: 100px;
+      }
     }
   }
 
@@ -27,6 +31,11 @@
     font-size: 16px;
     letter-spacing: 0.1px;
     transition: $transition;
+
+    @include mobile {
+      padding: 15px;
+      font-size: 15px;
+    }
   }
 
   .logoutBtn:hover {

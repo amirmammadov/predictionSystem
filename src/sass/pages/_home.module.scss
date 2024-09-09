@@ -14,11 +14,23 @@
     $gap: 50px
   );
 
+  @include tablet {
+    gap: 30px;
+  }
+
+  @include x-small-screen {
+    padding: 10px;
+  }
+
   .title {
     width: 100%;
     text-align: center;
     font-size: 25px;
     letter-spacing: 0.01px;
+
+    @include mobile {
+      font-size: 20px;
+    }
   }
 
   .buttons {
@@ -35,6 +47,15 @@
       padding: 0 30px;
       border-bottom: 1px solid $borderColor;
       cursor: pointer;
+
+      @include mobile {
+        padding: 0 20px;
+        font-size: 16px;
+      }
+
+      @include x-small-screen {
+        width: 100px;
+      }
     }
 
     button:disabled {

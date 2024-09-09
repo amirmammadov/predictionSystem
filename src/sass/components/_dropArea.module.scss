@@ -11,6 +11,10 @@
   border: 1px dashed $borderColor;
   transition: $transition;
   opacity: 1;
+
+  @include mobile {
+    padding: 10px;
+  }
 }
 
 .hideDrop {
