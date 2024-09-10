@@ -18,8 +18,17 @@ const removeTokens = () => {
   Cookies.remove("refreshToken");
 };
 
-const register = (email: string, username: string, password: string) => {
-  return api.post({ email, username, password }, "/auth/users/");
+
+const register = (
+  first_name: string,
+  last_name: string,
+  custom_email: string,
+  password: string
+) => {
+  return api.post(
+    { first_name, last_name, custom_email, password },
+    "/auth/users/"
+  );
 };
 
 const login = (email: string, password: string) => {
@@ -36,18 +45,18 @@ const handleJWTRefresh = () => {
   return api.post({ refresh: refreshToken }, "/auth/jwt/refresh");
 };
 
-const resetPassword = (email: string) => {
-  return api.post({ email }, "/auth/users/reset_password/");
+
+const resetPassword = (custom_email: string) => {
+  return api.post({ custom_email }, "/auth/users/reset_password/");
 };
 
 const resetPasswordConfirm = (
   new_password: string,
-  re_new_password: string,
   token: string,
   uid: string
 ) => {
   return api.post(
-    { uid, token, new_password, re_new_password },
+    { uid, token, new_password },
     "/auth/users/reset_password_confirm/"
   );
 };

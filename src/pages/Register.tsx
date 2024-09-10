@@ -4,7 +4,11 @@ import s from "../sass/shared/_sign.module.scss";
 
 import { Link } from "react-router-dom";
 
-import { toastError } from "../constants";
+import { toastError, toastSuccess } from "../constants";
+
+import { AuthActions } from "../services/auth";
+
+import { useNavigate } from "react-router-dom";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -18,7 +22,7 @@ const schema = z.object({
   confirmPassword: z.string().min(8),
 });
 
-type FormFields = z.infer<typeof schema>;
+type FormData = z.infer<typeof schema>;
 
 const Register = () => {
   const {
@@ -37,17 +41,32 @@ const Register = () => {
     }
   }, [errors.root]);
 
-  const onSubmit: SubmitHandler<FormFields> = async (data) => {
-    try {
-      await new Promise((_, refect) => setTimeout(refect, 1000));
-      console.log(data);
-    } catch (error) {
-      setError("root", {
-        message: String(error),
-      });
-    } finally {
-      reset();
+  const { register: registerUser } = AuthActions();
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (errors.root?.message) {
+      // toastError(errors.root.message);
+      toastError("User already exists!");
     }
+  }, [errors.root]);
+
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
+    registerUser(data.firstName, data.lastName, data.email, data.password)
+      .json(() => {
+        toastSuccess("You've signed up!");
+
+        navigate("/");
+      })
+      .catch((error) => {
+        setError("root", {
+          type: "manual",
+          message: error.json,
+        });
+      });
+
+    reset();
   };
 
   return (
