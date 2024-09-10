@@ -4,11 +4,15 @@ import s from "../sass/shared/_sign.module.scss";
 
 import { Link } from "react-router-dom";
 
-import { toastError } from "../constants";
+import { toastError, toastSuccess } from "../constants";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
+
+import { useNavigate } from "react-router-dom";
+
+import { AuthActions } from "../services/auth";
 
 const schema = z.object({
   email: z.string().email(),
@@ -28,6 +32,10 @@ const Login = () => {
     resolver: zodResolver(schema),
   });
 
+  const { login, storeToken } = AuthActions();
+
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (errors.root?.message) {
       toastError(errors.root.message);
@@ -35,16 +43,19 @@ const Login = () => {
   }, [errors.root]);
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
-    try {
-      await new Promise((_, refect) => setTimeout(refect, 1000));
-      console.log(data);
-    } catch (error) {
-      setError("root", {
-        message: String(error),
+    login(data.email, data.password)
+      .json((json) => {
+        storeToken(json.access, "access");
+        storeToken(json.refresh, "refresh");
+
+        toastSuccess("You've logged in!");
+        navigate("/");
+      })
+      .catch((error) => {
+        setError("root", { type: "manual", message: error.json.detail });
       });
-    } finally {
-      reset();
-    }
+
+    reset();
   };
 
   return (
