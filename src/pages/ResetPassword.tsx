@@ -2,11 +2,11 @@ import s from "../sass/shared/_sign.module.scss";
 
 import { toastError, toastSuccess } from "../constants";
 
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-
-import { useForm } from "react-hook-form";
 import { AuthActions } from "../services/auth";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
 const schema = z.object({
   email: z.string().email(),
@@ -20,7 +20,6 @@ const ResetPassword = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({ resolver: zodResolver(schema) });
-
   const { resetPassword } = AuthActions();
 
   const onSubmit = async (data: FormData) => {
@@ -39,17 +38,18 @@ const ResetPassword = () => {
         <div className={s.signTitle}>Reset password</div>
         <form className={s.signForm} onSubmit={handleSubmit(onSubmit)}>
           <div className={s.signFormItem}>
-            <label htmlFor="email">Email address</label>
+            <label htmlFor="email">Email</label>
             <input
               type="email"
-              {...register("email", { required: true })}
+              {...register("email")}
               id="email"
-              placeholder="Your email"
+              placeholder="Enter email"
             />
             {errors.email && (
               <div className={s.formInputError}>{errors.email.message}</div>
             )}
           </div>
+
           <button type="submit" className={s.submitBtn}>
             Send reset email
           </button>

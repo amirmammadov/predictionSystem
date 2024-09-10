@@ -4,11 +4,7 @@ import s from "../sass/shared/_sign.module.scss";
 
 import { Link } from "react-router-dom";
 
-import { toastError, toastSuccess } from "../constants";
-
-import { AuthActions } from "../services/auth";
-
-import { useNavigate } from "react-router-dom";
+import { toastError } from "../constants";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -35,32 +31,23 @@ const Register = () => {
     resolver: zodResolver(schema),
   });
 
-  const { register: registerUser } = AuthActions();
-
-  const navigate = useNavigate();
-
   useEffect(() => {
     if (errors.root?.message) {
-      // toastError(errors.root.message);
-      toastError("User already exists!");
+      toastError(errors.root.message);
     }
   }, [errors.root]);
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-    registerUser(data.firstName, data.lastName, data.email, data.password)
-      .json(() => {
-        toastSuccess("You've signed up!");
-
-        navigate("/");
-      })
-      .catch((error) => {
-        setError("root", {
-          type: "manual",
-          message: error.json,
-        });
+    try {
+      await new Promise((_, refect) => setTimeout(refect, 1000));
+      console.log(data);
+    } catch (error) {
+      setError("root", {
+        message: String(error),
       });
-
-    reset();
+    } finally {
+      reset();
+    }
   };
 
   return (
