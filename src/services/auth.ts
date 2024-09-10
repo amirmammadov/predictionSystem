@@ -36,18 +36,17 @@ const handleJWTRefresh = () => {
   return api.post({ refresh: refreshToken }, "/auth/jwt/refresh");
 };
 
-const resetPassword = (email: string) => {
-  return api.post({ email }, "/auth/users/reset_password/");
+const resetPassword = (custom_email: string) => {
+  return api.post({ custom_email }, "/auth/users/reset_password/");
 };
 
 const resetPasswordConfirm = (
   new_password: string,
-  re_new_password: string,
   token: string,
   uid: string
 ) => {
   return api.post(
-    { uid, token, new_password, re_new_password },
+    { uid, token, new_password },
     "/auth/users/reset_password_confirm/"
   );
 };

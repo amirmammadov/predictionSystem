@@ -8,6 +8,8 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
+import ResetPassword from "./pages/ResetPassword";
+import ResetPasswordConfirm from "./pages/ResetPasswordConfirm";
 
 const App = () => {
   return (
@@ -20,6 +22,11 @@ const App = () => {
           <Route element={<PublicRoutes />}>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
+            <Route
+              path="/reset-password-confirm"
+              element={<ResetPasswordConfirm />}
+            />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Route>

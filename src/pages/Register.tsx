@@ -18,7 +18,7 @@ const schema = z.object({
   confirmPassword: z.string().min(8),
 });
 
-type FormFields = z.infer<typeof schema>;
+type FormData = z.infer<typeof schema>;
 
 const Register = () => {
   const {
@@ -27,7 +27,7 @@ const Register = () => {
     setError,
     reset,
     formState: { errors, isSubmitting },
-  } = useForm<FormFields>({
+  } = useForm<FormData>({
     resolver: zodResolver(schema),
   });
 
@@ -37,7 +37,7 @@ const Register = () => {
     }
   }, [errors.root]);
 
-  const onSubmit: SubmitHandler<FormFields> = async (data) => {
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
     try {
       await new Promise((_, refect) => setTimeout(refect, 1000));
       console.log(data);

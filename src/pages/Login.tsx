@@ -19,7 +19,7 @@ const schema = z.object({
   password: z.string().min(8),
 });
 
-type FormFields = z.infer<typeof schema>;
+type FormData = z.infer<typeof schema>;
 
 const Login = () => {
   const {
@@ -28,7 +28,7 @@ const Login = () => {
     setError,
     reset,
     formState: { errors, isSubmitting },
-  } = useForm<FormFields>({
+  } = useForm<FormData>({
     resolver: zodResolver(schema),
   });
 
@@ -42,7 +42,7 @@ const Login = () => {
     }
   }, [errors.root]);
 
-  const onSubmit: SubmitHandler<FormFields> = async (data) => {
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
     login(data.email, data.password)
       .json((json) => {
         storeToken(json.access, "access");
@@ -86,7 +86,7 @@ const Login = () => {
             {errors.password && (
               <div className={s.formInputError}>{errors.password.message}</div>
             )}
-            <Link to="#" className={s.resetPassword}>
+            <Link to="/reset-password" className={s.resetPassword}>
               Forgot password?
             </Link>
           </div>
