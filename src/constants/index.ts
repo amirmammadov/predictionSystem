@@ -29,4 +29,7 @@ export const toastSuccess = (message: string) => {
 };
 
 export const optionOneVals = ["automatic", "manual"];
+
 export const statuses = ["all", "X", "Y"];
+
+export const API = "https://cosmootto.pythonanywhere.com";

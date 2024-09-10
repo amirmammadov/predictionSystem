@@ -1,16 +1,39 @@
 import s from "../sass/components/_header.module.scss";
 
-import { useAuth } from "../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
+
+import { AuthActions } from "../services/auth";
 
 const Header = () => {
-  const { isAuthenticated } = useAuth();
+  const { getToken, logout, removeTokens } = AuthActions();
+
+  const token = getToken("access");
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout()
+      .res(() => {
+        removeTokens();
+
+        navigate("/login");
+      })
+      .catch(() => {
+        removeTokens();
+        navigate("/login");
+      });
+  };
 
   return (
     <header className={s.header}>
       <a className={s.logo}>
         <img src="/assets/logo.png" alt="simple_co" className={s.logoImg} />
       </a>
-      {isAuthenticated && <button className={s.logoutBtn}>Logout</button>}
+      {token && (
+        <button className={s.logoutBtn} onClick={handleLogout}>
+          Logout
+        </button>
+      )}
     </header>
   );
 };
