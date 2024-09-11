@@ -1,5 +1,11 @@
 import { Slide, toast } from "react-toastify";
 
+export const optionOneVals = ["automatic", "manual"];
+
+export const statuses = ["all", "X", "Y"];
+
+export const API = "https://simpletask.pythonanywhere.com";
+
 export const toastError = (message: string) => {
   return toast.error(`${message}`, {
     position: "top-center",
@@ -27,9 +33,3 @@ export const toastSuccess = (message: string) => {
     transition: Slide,
   });
 };
-
-export const optionOneVals = ["automatic", "manual"];
-
-export const statuses = ["all", "X", "Y"];
-
-export const API = "https://cosmootto.pythonanywhere.com";

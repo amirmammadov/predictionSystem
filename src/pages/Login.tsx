@@ -43,7 +43,7 @@ const Login = () => {
   }, [errors.root]);
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-    login(data.email, data.password)
+    login({ email: data.email, password: data.password })
       .json((json) => {
         storeToken(json.access, "access");
         storeToken(json.refresh, "refresh");
@@ -52,6 +52,7 @@ const Login = () => {
         navigate("/");
       })
       .catch((error) => {
+        console.log(error.json);
         setError("root", { type: "manual", message: error.json.detail });
       });
 

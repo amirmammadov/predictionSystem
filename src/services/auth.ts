@@ -1,6 +1,8 @@
 import wretch from "wretch";
 import Cookies from "js-cookie";
 
+import { ILogin, IRegister } from "../types";
+
 import { API } from "../constants";
 
 const api = wretch(API).accept("application/json");
@@ -18,12 +20,20 @@ const removeTokens = () => {
   Cookies.remove("refreshToken");
 };
 
-const register = (email: string, username: string, password: string) => {
-  return api.post({ email, username, password }, "/auth/users/");
+const register = ({ email, firstName, lastName, password }: IRegister) => {
+  return api.post(
+    {
+      email,
+      first_name: firstName,
+      last_name: lastName,
+      password,
+    },
+    "/auth/users/"
+  );
 };
 
-const login = (email: string, password: string) => {
-  return api.post({ custom_email: email, password }, "/auth/jwt/create");
+const login = ({ email, password }: ILogin) => {
+  return api.post({ email, password }, "/auth/jwt/create");
 };
 
 const logout = () => {
