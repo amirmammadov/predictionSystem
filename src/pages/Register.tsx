@@ -6,6 +6,10 @@ import { Link } from "react-router-dom";
 
 import { toastError } from "../constants";
 
+import { AuthActions } from "../services/auth";
+
+import { useNavigate } from "react-router-dom";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
@@ -31,6 +35,10 @@ const Register = () => {
     resolver: zodResolver(schema),
   });
 
+  const { register: registerUser } = AuthActions();
+
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (errors.root?.message) {
       toastError(errors.root.message);
@@ -38,16 +46,23 @@ const Register = () => {
   }, [errors.root]);
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-    try {
-      await new Promise((_, refect) => setTimeout(refect, 1000));
-      console.log(data);
-    } catch (error) {
-      setError("root", {
-        message: String(error),
+    registerUser({
+      email: data.email,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      password: data.password,
+    })
+      .json(() => {
+        navigate("/");
+      })
+      .catch((err) => {
+        setError("root", {
+          type: "manual",
+          message: err.json.detail,
+        });
       });
-    } finally {
-      reset();
-    }
+
+    reset();
   };
 
   return (
